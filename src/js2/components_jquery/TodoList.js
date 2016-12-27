@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux'
 import { toggleTodo } from '../action'
-import {List, ListItem} from 'material-ui/List';
-import MobileTearSheet from '../containers/MobileTearSheet';
 
 class TodoList extends Component {
   constructor (props, context) {
@@ -11,21 +9,22 @@ class TodoList extends Component {
   }
   render () {
     return (
-      <MobileTearSheet>
-        <List>
+      <div>
+        <ul id="sortable">
           {this.props.todos.map(todo =>
-            <ListItem  key={todo.id}
+            <li key={todo.id}
               style={{
-                 textDecoration: todo.completed ? 'line-through' : 'none',
-                 backgroundColor: todo.completed ? 'red' : '',
-                 color: todo.completed ? 'white' : ''
+                 textDecoration: todo.completed ? 'line-through' : 'none'
                }}
               onClick={() => this.props.clickToToggleTodo(todo.id)}
-              primaryText={todo.text}
-               />
+              className="ui-state-default"
+               >
+              <span className="ui-icon ui-icon-arrowthick-2-n-s"></span>
+              {todo.text}
+            </li>
           )}
-        </List>
-      </MobileTearSheet>
+        </ul>
+      </div>
     )
   }
 }

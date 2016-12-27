@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
+import TestReactForm from '../components/TestReactForm';
 import { connect } from 'react-redux';
 import { getTodo } from '../action';
 
@@ -11,7 +12,6 @@ class Todo extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
     this.props.loadTodos()
   }
 

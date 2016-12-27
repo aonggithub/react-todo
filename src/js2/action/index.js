@@ -22,20 +22,14 @@ export const toggleTodo = (id) => {
 export const saveTodo = (todos) => {
   return function(dispatch){
 
-  console.log(todos);
-
-  todos.filter(todo => todo.completed == false).forEach(function(item, i){
-    console.log(i);
-    console.log(item);
-  })
-
-  // axios.post(`${API_URL}/saveTodo`, {todos:todos.filter(todo => todo.completed == false)})
-  //   .then(response =>{
-  //     dispatch({
-  //       type: 'REMOVE_TODO',
-  //       payload: todos.filter(todo => todo.completed == false)
-  //     })
-  //   })
+  axios.post(`${API_URL}/saveTodo`, {todos:todos.filter(todo => todo.completed == false)})
+    .then(response =>{
+      dispatch({
+        type: 'REMOVE_TODO',
+        payload: todos.filter(todo => todo.completed == false)
+      })
+      console.log("Save success");
+    })
   }
 }
 

@@ -9,6 +9,9 @@ import thunk from 'redux-thunk'
 import promise from 'redux-promise'
 import validator from 'validator';
 import './extend';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
 
 const logger = createLogger()
 const store = createStore(todoApp, applyMiddleware(thunk, promise, logger))
@@ -17,12 +20,13 @@ const store = createStore(todoApp, applyMiddleware(thunk, promise, logger))
 // Validation
 
 
-
 // End Validation
 
 render(
-    <Provider store={store}>
-      <Todo />
-    </Provider>,
+    <MuiThemeProvider>
+      <Provider store={store}>
+        <Todo />
+      </Provider>
+    </MuiThemeProvider>,
   document.getElementById('root')
 )

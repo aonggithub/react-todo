@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React.js using NPM, Babel6 and Webpack</title>
+    <link rel="stylesheet" href="../css/jquery-ui/jquery-ui.css">
+    <script src="../css/jquery-ui/external/jquery/jquery.js"></script>
+    <script src="../css/jquery-ui/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#sortable" ).sortable({
+        start: function(event, ui){
+          console.log("start");
+          console.log("ui.item.index : " +  ui.item.index());
+        },
+        change: function(event, ui){
+          console.log("change");
+          console.log("ui.placeholder.index() : " +  ui.placeholder.index());
+        },
+        update: function(event, ui){
+          console.log("update");
+        }
+      });
+
+      $( "#sortable" ).disableSelection();
+
+      } );
+    </script>
+    <style>
+    #sortable .ui-selecting { background: #FECA40; }
+    #sortable .ui-selected { background: #F39814; color: white; }
+    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #sortable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../client/public/bundle.js" type="text/javascript"></script>
+  </body>
+</html>

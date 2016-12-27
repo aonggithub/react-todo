@@ -4,44 +4,58 @@ import { render } from 'react-dom';
 import { addTodo } from '../action';
 import { saveTodo } from '../action';
 import Validation from 'react-validation';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import validator from 'validator';
 
 class AddTodo extends Component {
 
   constructor (props, context) {
     super(props, context);
+    this.state = {value: '', errorMessage: ''};
+
+    this.handleChangeRequired = this.handleChangeRequired.bind(this);
+  }
+
+  handleChangeRequired(event){
+    this.setState({value: event.target.value});
+    if(!validator.isEmpty(event.target.value)){
+      this.setState({errorMessage: ''})
+    }else{
+      this.setState({errorMessage: 'Todo task is required'})
+    }
   }
 
   render () {
-    let input
     return (
       <div>
-        <Validation.components.Form onSubmit={ e =>{
+        <form onSubmit={ e =>{
             e.preventDefault()
-            this.props.onClick(input.value)
-            input.value = ''
+            this.props.onClick(this.state.value)
+            this.state.value = ''
           }}>
-            <Validation.components.Input name="todo"
-              type="text"
-              ref = {(ref) =>
-                input = ref
-              }
-              value=""
-              errorClassName="is-invalid-input"
-              containerClassName=""
-              validations={['required']}
-              />
-            <button type="submit"
-              className="ui-button ui-widget ui-corner-all">
-              Add Todo
-            </button>
-            <a href="#" onClick={ e=>{
-                e.preventDefault()
-                this.props.onClickSaveTodo(this.props.todos)
-              }}
-              className="ui-button ui-widget ui-corner-all"
-              >Save Todo</a>
-          </Validation.components.Form>
+            <div>
+              <TextField
+               onChange={this.handleChangeRequired}
+               floatingLabelText="Floating Label Text"
+               errorText={this.state.errorMessage}
+               />
+            </div>
+            <br />
+            <div>
+              <RaisedButton
+                type="submit"
+                label ="Add Todo"
+                primary={true}
+                disabled = {this.state.value == ''}/>
+              <RaisedButton onClick={ e=>{
+                  e.preventDefault()
+                  this.props.onClickSaveTodo(this.props.todos)
+                }}
+                label="Save Todo"
+                secondary={true}/>
+            </div>
+          </form>
       </div>
     )
   }
@@ -56,7 +70,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (input) => {
-      dispatch(addTodo(input))
+      dispatch(addTodo(input));
     },
     onClickSaveTodo: (todos) => {
       dispatch(saveTodo(todos));
