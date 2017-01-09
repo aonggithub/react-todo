@@ -36,7 +36,7 @@ export const saveTodo = (todos) => {
 export const getTodo = () => {
   return function(dispatch){
     // Setting fixed data
-    
+
     let data = [
       {
           _id: "5860928f360fbe6728fd2e54",
@@ -56,7 +56,7 @@ export const getTodo = () => {
       {
           _id: "5860928f360fbe6728fd2e58",
           id: "4",
-          text: "Sass: Syntactically Awesome Style Sheets"
+          text: "Sass: Syntactically Awesome Style Sheets Number 2"
       }
     ];
     if( data.length > 0 ){
