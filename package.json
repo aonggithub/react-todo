@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "dev": "concurrently \"webpack -d --watch\" \"nodemon src/server/index.js\"",
     "build": "webpack -p"
   },
@@ -33,5 +33,9 @@
     "redux-thunk": "^2.1.0",
     "validator": "^6.2.0",
     "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
