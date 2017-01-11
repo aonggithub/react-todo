@@ -56,7 +56,12 @@ export const getTodo = () => {
       {
           _id: "5860928f360fbe6728fd2e58",
           id: "4",
-          text: "Sass: Syntactically Awesome Style Sheets Number 3"
+          text: "Sass: Syntactically Awesome Style Sheets"
+      },
+      {
+          _id: "5860928f360fbe6728fd2e58",
+          id: "5",
+          text: "Visual DOM"
       }
     ];
     if( data.length > 0 ){
